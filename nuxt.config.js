@@ -72,13 +72,13 @@ export default {
     babel: {
       presets: ['@babel/preset-env'],
       plugins: [
-        ['@babel/plugin-trasform-runtime']
+        ['@babel/plugin-transform-runtime']  
       ]
     },
     postcss: {
       plugins: [
         require('autoprefixer')
-    ]
+      ]
     }
   },
 
