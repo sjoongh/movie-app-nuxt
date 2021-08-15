@@ -30,6 +30,7 @@
     "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/eslint-config": "^6.0.1",
     "@nuxtjs/eslint-module": "^3.0.2",
+    "@nuxtjs/style-resources": "^1.2.1",
     "autoprefixer": "^10.2.5",
     "babel-eslint": "^10.1.0",
     "cypress": "^8.2.0",
@@ -41,5 +42,6 @@
     "postcss-loader": "^4.2.0",
     "sass": "^1.37.0",
     "sass-loader": "^10.1.1"
+    
   }
 }
