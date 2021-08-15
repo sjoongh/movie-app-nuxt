@@ -6,7 +6,7 @@ const axios = require('axios')
 const { OMDB_API_KEY } = process.env
 const app = express()
 
-app.user(express.json())
+app.use(express.json())
 
 // 주소/.netlify.functions/movie
 // .netlify.functions을 api로 바꿔서 사용 -> '/'
