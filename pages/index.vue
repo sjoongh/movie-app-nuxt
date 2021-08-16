@@ -10,7 +10,6 @@
 import Search from '@/components/Search'
 import MovieList from '@/components/MovieList'
 import Headline from '@/components/Headline'
-
 export default {
   components: {
     Search,

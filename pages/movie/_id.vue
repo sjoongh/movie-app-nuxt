@@ -17,15 +17,15 @@
         :z-index="9"
         fixed />
     </template>
-    <div 
+    <div
       v-else
       class="movie-details">
-      <div 
+      <div
         :style="{ backgroundImage: `url(${requestDiffSizeImage(theMovie.Poster)})` }"
         class="poster">
         <Loader
           v-if="imageLoading"
-          absolute />  
+          absolute />
       </div>
       <div class="specs">
         <div class="title">
@@ -76,9 +76,8 @@ export default {
   components: {
     Loader
   },
-  // 얘가 처음 실행되고 나머지가 다 정의됨
-  asyncData({ store, params }) {
-    store.dispatch('movie/serarchMovieWithId', {
+  async asyncData({ store, params }) {
+    await store.dispatch('movie/searchMovieWithId', {
       id: params.id
     })
     return {
@@ -92,13 +91,14 @@ export default {
     ])
   },
   methods: {
-    requestDiffSizeImage(url) {
+    requestDiffSizeImage (url) {
       if (!url || url === 'N/A') {
         this.imageLoading = false
         return ''
       }
       const src = url.replace('SX300', 'SX700')
       this.$loadImage(src).then(() => {
+        console.log('then:', src, this.imageLoading)
         this.imageLoading = false
       })
       return src
@@ -107,11 +107,12 @@ export default {
   head() {
     return {
       meta: [
-        // type과 sitename은 바꾸지 않으므로 안가져와도 ㄱㅊ
-      { hid: 'og:title', property: 'og:title', content: this.theMovie.Title },
-      { hid: 'og:description', property: 'og:description', content: this.theMovie.Plot },
-      { hid: 'og:image', property: 'og:image', content: this.theMovie.Poster },
-      { hid: 'og:url', property: 'og:url', content: process.env.CLIENT_URL + this.$route.fullPath },
+        { hid: 'og:type', property: 'og:type', content: 'website' },
+        { hid: 'og:site_name', property: 'og:site_name', content: 'Nuxt Movie App' },
+        { hid: 'og:title', property: 'og:title', content: this.theMovie.Title },
+        { hid: 'og:description', property: 'og:description', content: this.theMovie.Plot },
+        { hid: 'og:image', property: 'og:image', content: this.theMovie.Poster },
+        { hid: 'og:url', property: 'og:url', content: process.env.CLIENT_URL + this.$route.fullPath }
       ]
     }
   }
@@ -124,7 +125,7 @@ export default {
   .poster {
     flex-shrink: 0;
     width: 500px;
-    height: 500px * 3/2;
+    height: 500px * (3 / 2);
     margin-right: 70px;
   }
   .specs {
@@ -159,7 +160,7 @@ export default {
   color: $gray-600;
   .poster {
     width: 500px;
-    height: 500px * 3/2;
+    height: 500px * (3 / 2);
     margin-right: 70px;
     border-radius: 10px;
     background-color: $gray-200;

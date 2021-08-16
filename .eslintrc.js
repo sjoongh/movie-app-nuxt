@@ -14,7 +14,7 @@ module.exports = {
     'eslint:recommended'
   ],
   plugins: [
-    'cypress'
+    // 'cypress'
   ],
   // add your custom rules here
   rules: {
